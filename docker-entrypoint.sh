@@ -63,6 +63,8 @@ if [ "$1" = 'cassandra' ]; then
 			sed -ri 's/^(# )?('"$yaml"':).*/\2 '"$val"'/' "$CASSANDRA_CONFIG/cassandra.yaml"
 		fi
 	done
+	
+	sed -ri 's/^(# )?('"authenticator"':).*/\2 '"PasswordAuthenticator"'/' "$CASSANDRA_CONFIG/cassandra.yaml"
 
 	for rackdc in dc rack; do
 		var="CASSANDRA_${rackdc^^}"
